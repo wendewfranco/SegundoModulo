@@ -2,6 +2,8 @@ package org.generation.blogpessoal.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.generation.blogpessoal.model.Postagem;
 import org.generation.blogpessoal.repository.PostagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +46,15 @@ public class PostagensController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Postagem> post (@RequestBody Postagem postagem) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
+	public ResponseEntity<Postagem> post (@Valid @RequestBody Postagem postagem) {
+		Postagem objeto = repository.save(postagem);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.findById(objeto.getId()).get());
 		
 	}
 	
 	@PutMapping
-	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem) {
+	public ResponseEntity<Postagem> put (@Valid @RequestBody Postagem postagem) {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
 		
 	}
