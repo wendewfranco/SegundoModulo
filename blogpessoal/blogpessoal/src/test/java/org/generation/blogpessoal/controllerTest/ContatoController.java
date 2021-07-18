@@ -1,14 +1,12 @@
-package org.generation.blogpessoal.controller;
+package org.generation.blogpessoal.controllerTest;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.generation.blogpessoal.model.Contato;
 import org.generation.blogpessoal.repository.ContatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/contato")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-public class UsuarioController {
-
+@RequestMapping("/contatos")
+public class ContatoController {
+	
 	@Autowired
 	private ContatoRepository contatoRepository;
 	
@@ -64,4 +61,5 @@ public class UsuarioController {
 	public void delete(@PathVariable Long id) {
 	contatoRepository.deleteById(id);
 }
+		
 }
